@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matias Valencia - Portfolio Personal</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Favicon (Icono de la pestaña) -->
+    <link rel="icon" href="https://placehold.co/32x32/8d6e63/ffffff?text=MV" type="image/png">
+
+    <style>
+        /* Paleta de colores pastel marrón */
+        :root {
+            --bg-main: #F5F1ED;
+            --text-dark: #5D4037;
+            --text-medium: #795548;
+            --text-light: #A1887F;
+            --accent: #8D6E63;
+            --accent-hover: #6D4C41;
+            --dot-pattern: #DCD6D0;
+        }
+
+        /* Estilo base para el cuerpo */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            background-image: radial-gradient(circle at 1px 1px, var(--dot-pattern) 1px, transparent 0);
+            background-size: 20px 20px;
+            color: var(--text-dark);
+        }
+
+        /* Estilo para las tarjetas con efecto de vidrio (glassmorphism) */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(188, 170, 164, 0.3);
+            border-radius: 1rem;
+        }
+
+        /* Animación de entrada para las secciones */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Estilo para la línea de tiempo de la trayectoria */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -29px;
+            top: 4px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            border: 3px solid #E0DACE; /* Color de fondo para dar contraste */
+            z-index: 10;
+        }
+        
+        /* Estilo para el slider de volumen */
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: var(--accent);
+            cursor: pointer;
+            border-radius: 50%;
+            margin-top: -6px;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            background: var(--accent);
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        /* Colores para SVG de los hobbies */
+        .hobby-icon {
+            color: var(--accent);
+        }
+        .hobby-icon-bg {
+            background-color: rgba(141, 110, 99, 0.1);
+        }
+
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- Contenedor principal -->
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Header y Navegación -->
+        <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+            <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                 <div class="glass-card flex justify-between items-center p-4">
+                    <a href="#" class="text-xl font-bold text-stone-800">Matias Valencia</a>
+                    <div class="hidden md:flex space-x-8 text-stone-700">
+                        <a href="#sobre-mi" class="hover:text-stone-900 transition-colors">Sobre Mí</a>
+                        <a href="#perfil-comercial" class="hover:text-stone-900 transition-colors">Perfil Comercial</a>
+                        <a href="#hobbies" class="hover:text-stone-900 transition-colors">Hobbies y Trayectoria</a>
+                    </div>
+                    <div class="md:hidden">
+                        <button id="mobile-menu-button" class="text-stone-800 focus:outline-none">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+            <!-- Menú Móvil -->
+            <div id="mobile-menu" class="hidden md:hidden glass-card mx-4 text-stone-700">
+                 <a href="#sobre-mi" class="block text-center py-2 px-4 hover:bg-stone-200/50 rounded-lg">Sobre Mí</a>
+                 <a href="#perfil-comercial" class="block text-center py-2 px-4 hover:bg-stone-200/50 rounded-lg">Perfil Comercial</a>
+                 <a href="#hobbies" class="block text-center py-2 px-4 hover:bg-stone-200/50 rounded-lg">Hobbies y Trayectoria</a>
+            </div>
+        </header>
+
+        <main class="pt-32">
+            <!-- Sección Hero -->
+            <section class="text-center min-h-[60vh] flex flex-col justify-center items-center">
+                <div class="glass-card p-8 md:p-12 max-w-3xl">
+                    <h1 class="text-4xl md:text-6xl font-extrabold text-stone-800 leading-tight">
+                        Construyendo Futuro,<br> <span style="color: var(--accent-hover);">Creando Valor.</span>
+                    </h1>
+                    <p class="mt-6 text-lg md:text-xl text-stone-700">
+                        Mi portafolio personal y profesional. Un vistazo a mi trayectoria, mis proyectos y pasiones.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Sección Sobre Mí -->
+            <section id="sobre-mi" class="py-20 reveal">
+                <div class="glass-card p-8 md:p-12">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+                        <!-- Columna del Video -->
+                        <div class="md:col-span-1 flex flex-col items-center">
+                            <!-- Simulación de Celular -->
+                            <div class="relative mx-auto border-stone-800 bg-stone-900 border-[8px] rounded-[2.5rem] h-[480px] w-[240px] shadow-xl">
+                                <div class="w-[100px] h-[18px] bg-stone-900 top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute"></div>
+                                <div class="h-[32px] w-[3px] bg-stone-900 absolute -left-[11px] top-[72px] rounded-l-lg"></div>
+                                <div class="h-[48px] w-[3px] bg-stone-900 absolute -right-[11px] top-[100px] rounded-r-lg"></div>
+                                <div class="rounded-[2rem] overflow-hidden w-full h-full bg-black">
+                                     <video id="portfolioVideo" class="w-full h-full object-cover cursor-pointer" loop muted playsinline autoplay>
+                                        <source src="https://raw.githubusercontent.com/mvalencia7/porfolio/main/video.mp4" type="video/mp4">
+                                        Tu navegador no soporta la etiqueta de video.
+                                    </video>
+                                </div>
+                            </div>
+                             <!-- Controles del Video -->
+                            <div class="relative mt-4 flex justify-center items-center space-x-4 p-2 glass-card w-full max-w-[240px] mx-auto">
+                                <button id="playPauseBtn" class="p-2 rounded-full hover:bg-stone-300/40 transition-colors text-stone-800">
+                                    <svg id="playIcon" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M4.018 15.132A1.25 1.25 0 0 0 6 14.156V5.844a1.25 1.25 0 0 0-1.982-1.288L1.182 8.712a1.25 1.25 0 0 0 0 2.576l2.836 4.144Z"></path></svg>
+                                    <svg id="pauseIcon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M5.75 4.75a.75.75 0 0 0-.75.75v9.5a.75.75 0 0 0 .75.75h1.5a.75.75 0 0 0 .75-.75V5.5a.75.75 0 0 0-.75-.75h-1.5Zm7 0a.75.75 0 0 0-.75.75v9.5a.75.75 0 0 0 .75.75h1.5a.75.75 0 0 0 .75-.75V5.5a.75.75 0 0 0-.75-.75h-1.5Z"></path></svg>
+                                </button>
+                                <div id="volumeControls" class="flex items-center space-x-2 text-stone-800">
+                                    <svg id="volumeIcon" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"></svg>
+                                    <input id="volumeSlider" type="range" min="0" max="1" step="0.1" value="0" class="w-24 h-1 bg-stone-300 rounded-lg appearance-none cursor-pointer">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Columna de Texto -->
+                        <div class="md:col-span-2">
+                            <h2 class="text-3xl font-bold text-stone-800 mb-4">Sobre Mí</h2>
+                            <p class="text-stone-700 mb-4">
+                                Soy un profesional apasionado por el desarrollo de negocios y la gestión de proyectos. Con una visión estratégica, busco siempre la excelencia y la innovación en cada desafío que emprendo. Mi objetivo es combinar mi experiencia en el sector inmobiliario y jurídico para ofrecer soluciones integrales y de alto valor.
+                            </p>
+                            <p class="text-stone-700">
+                                Este espacio es un reflejo de mi camino, mis intereses y la forma en que veo el mundo. Creo firmemente en el poder de las relaciones humanas y la colaboración para alcanzar grandes metas.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección Perfil Comercial -->
+            <section id="perfil-comercial" class="py-20 reveal">
+                <div class="glass-card p-8 md:p-12">
+                    <h2 class="text-3xl font-bold text-stone-800 mb-2 text-center">Perfil Comercial</h2>
+                    <p class="text-center text-stone-600 mb-8 max-w-2xl mx-auto">Como dueño de Valencia Viudes, lidero un equipo dedicado a ofrecer servicios de excelencia en el sector inmobiliario y jurídico.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Card Inmobiliaria -->
+                        <div class="bg-white/40 p-6 rounded-lg border border-stone-300/50 hover:border-amber-700 transition-all duration-300">
+                            <h3 class="font-bold text-xl text-stone-800 mb-2">Área Inmobiliaria</h3>
+                            <p class="text-stone-700 text-sm">Gestión de compra-venta, alquileres y tasaciones. Conectamos oportunidades con personas, garantizando seguridad y confianza en cada operación.</p>
+                        </div>
+                        <!-- Card Jurídico -->
+                        <div class="bg-white/40 p-6 rounded-lg border border-stone-300/50 hover:border-amber-700 transition-all duration-300">
+                            <h3 class="font-bold text-xl text-stone-800 mb-2">Área Jurídica</h3>
+                            <p class="text-stone-700 text-sm">Asesoramiento legal integral. Especialistas en sucesiones, contratos, desalojos y más, protegiendo los intereses de nuestros clientes.</p>
+                        </div>
+                        <!-- Card Administración -->
+                        <div class="bg-white/40 p-6 rounded-lg border border-stone-300/50 hover:border-amber-700 transition-all duration-300">
+                            <h3 class="font-bold text-xl text-stone-800 mb-2">Administración</h3>
+                            <p class="text-stone-700 text-sm">Administración eficiente de consorcios y alquileres. Optimizamos recursos y aseguramos una gestión transparente y proactiva.</p>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-8">
+                        <a href="https://www.valenciaviudes.com.ar/" target="_blank" rel="noopener noreferrer" 
+                           class="inline-block text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 shadow-lg"
+                           style="background-color: var(--accent); hover:background-color: var(--accent-hover);">
+                           Visitar ValenciaViudes.com.ar
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección Hobbies y Trayectoria -->
+            <section id="hobbies" class="py-20 reveal">
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                    <!-- Columna Trayectoria -->
+                    <div class="lg:col-span-3 glass-card p-8">
+                        <h2 class="text-3xl font-bold text-stone-800 mb-8">Mi Trayectoria</h2>
+                        <div class="relative border-l-2 border-stone-300 pl-8">
+                            <!-- Item de la línea de tiempo -->
+                            <div class="timeline-item mb-12">
+                                <h3 class="font-bold text-xl" style="color: var(--accent);">2023 - Presente</h3>
+                                <p class="font-semibold text-stone-800 mt-1">Dueño en Valencia Viudes</p>
+                                <p class="text-stone-700 mt-2 text-sm">Liderando la expansión de la firma, incorporando nuevas tecnologías y estrategias de mercado para potenciar el crecimiento y la satisfacción del cliente.</p>
+                            </div>
+                            <!-- Item de la línea de tiempo -->
+                            <div class="timeline-item mb-12">
+                                <h3 class="font-bold text-xl" style="color: var(--accent);">2018 - 2022</h3>
+                                <p class="font-semibold text-stone-800 mt-1">Gerente de Proyectos</p>
+                                <p class="text-stone-700 mt-2 text-sm">Responsable de la gestión de proyectos inmobiliarios de gran escala, desde la planificación inicial hasta la entrega final.</p>
+                            </div>
+                            <!-- Item de la línea de tiempo -->
+                             <div class="timeline-item">
+                                <h3 class="font-bold text-xl" style="color: var(--accent);">2015 - 2017</h3>
+                                <p class="font-semibold text-stone-800 mt-1">Formación Académica</p>
+                                <p class="text-stone-700 mt-2 text-sm">Graduado en [Tu Carrera] por la [Tu Universidad]. Aquí comenzaron a forjarse las bases de mi perfil profesional.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Columna Hobbies -->
+                    <div class="lg:col-span-2 glass-card p-8">
+                        <h2 class="text-3xl font-bold text-stone-800 mb-8">Mis Hobbies</h2>
+                        <div class="space-y-6">
+                            <!-- Hobby 1 -->
+                            <div class="flex items-center space-x-4">
+                               <div class="hobby-icon-bg p-3 rounded-lg"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hobby-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v11.494m-9-5.747h18"/></svg></div>
+                                <div>
+                                    <h4 class="font-semibold text-stone-800">Deportes</h4>
+                                    <p class="text-stone-600 text-sm">El tenis y el running son mi escape para recargar energías.</p>
+                                </div>
+                            </div>
+                             <!-- Hobby 2 -->
+                            <div class="flex items-center space-x-4">
+                               <div class="hobby-icon-bg p-3 rounded-lg"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hobby-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2h10a2 2 0 002-2v-1a2 2 0 012-2h1.945M7.737 11l-.262-2.825A2 2 0 019.462 6h5.076a2 2 0 011.987 2.175L16.263 11m-7.262 8h4.498c.268 0 .512-.105.698-.293l1.405-1.405A2 2 0 0016 16V15a2 2 0 00-2-2h-4a2 2 0 00-2 2v1a2 2 0 00.595 1.405l1.407 1.405A1 1 0 008.998 19z"/></svg></div>
+                                <div>
+                                    <h4 class="font-semibold text-stone-800">Tecnología</h4>
+                                    <p class="text-stone-600 text-sm">Explorando las últimas tendencias en IA y Fintech.</p>
+                                </div>
+                            </div>
+                             <!-- Hobby 3 -->
+                            <div class="flex items-center space-x-4">
+                               <div class="hobby-icon-bg p-3 rounded-lg"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hobby-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"/></svg></div>
+                                <div>
+                                    <h4 class="font-semibold text-stone-800">Viajes</h4>
+                                    <p class="text-stone-600 text-sm">Descubrir nuevas culturas y paisajes enriquece mi perspectiva.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center py-10 mt-16 border-t border-stone-200">
+            <p class="text-stone-600">&copy; <span id="year"></span> Matias Valencia. Todos los derechos reservados.</p>
+            <p class="text-stone-500 text-sm mt-2">Diseño y desarrollo con una estética moderna.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Menú Móvil ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            mobileMenu.addEventListener('click', (e) => {
+                 if (e.target.tagName === 'A') {
+                     mobileMenu.classList.add('hidden');
+                 }
+            });
+
+            // --- Animación de Revelado al Hacer Scroll ---
+            const revealElements = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            revealElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // --- Controles del Video ---
+            const video = document.getElementById('portfolioVideo');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const playIcon = document.getElementById('playIcon');
+            const pauseIcon = document.getElementById('pauseIcon');
+            const volumeSlider = document.getElementById('volumeSlider');
+            const volumeIcon = document.getElementById('volumeIcon');
+            
+            const volumeIcons = {
+                muted: `<path stroke-linecap="round" stroke-linejoin="round" d="M9.143 17.082a24.248 24.248 0 005.714 0m-5.714 0a3 3 0 11-5.714 0M1.5 4.5l21 15m-18-15a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M18 9.75v-.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m-5.714 0a24.255 24.255 0 01-5.714 0"></path>`,
+                low: `<path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.75a6 6 0 00-12 0v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"></path>`,
+                high: `<path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.75a6 6 0 00-12 0v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M21 6.727a11.05 11.05 0 00-2.794-3.727M3 6.727a11.05 11.05 0 012.792-3.727"></path>`,
+            };
+
+            function updatePlayPauseIcon() {
+                if (video.paused) {
+                    playIcon.classList.remove('hidden');
+                    pauseIcon.classList.add('hidden');
+                } else {
+                    playIcon.classList.add('hidden');
+                    pauseIcon.classList.remove('hidden');
+                }
+            }
+
+            function togglePlay() {
+                if (video.paused) {
+                    video.play();
+                } else {
+                    video.pause();
+                }
+                updatePlayPauseIcon();
+            }
+
+            function handleVolumeChange() {
+                video.muted = false;
+                video.volume = volumeSlider.value;
+                if (volumeSlider.value == 0) {
+                    volumeIcon.innerHTML = volumeIcons.muted;
+                } else if (volumeSlider.value < 0.5) {
+                    volumeIcon.innerHTML = volumeIcons.low;
+                } else {
+                    volumeIcon.innerHTML = volumeIcons.high;
+                }
+            }
+
+            playPauseBtn.addEventListener('click', togglePlay);
+            video.addEventListener('click', togglePlay); 
+            volumeSlider.addEventListener('input', handleVolumeChange);
+
+            video.play().catch(() => {
+                updatePlayPauseIcon();
+            });
+            updatePlayPauseIcon();
+            handleVolumeChange(); 
+
+            document.getElementById('year').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>
